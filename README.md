@@ -6,6 +6,8 @@ Dieses Projekt ist im Rahmen der Software Engineering Vorlesung entstanden. Es g
 
 Wir lesen Leistungsdaten aus einer `activity.csv` Datei ein, sortieren die Werte mit einem selbst geschriebenen Bubble Sort Algorithmus und plotten dann die Power Curve als Grafik. Das Ergebniss wird als PNG im `figures/` Ordner gespeichert.
 
+![Power Curve](figures/power_curve.png)
+
 ## Projektstruktur
 
 - `main.py` - Hauptskript, hier wird alles zusammengefügt
