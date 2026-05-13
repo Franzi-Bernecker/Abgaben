@@ -6,7 +6,7 @@ authors = [
     {name = "Franzi-Bernecker", email = "bf8127@mci4me.at"},
     {name = "laurenzkeller05", email = "laurenz.keller05@gmail.com"},
 ]
-dependencies = ["numpy>=2.4.4"]
+dependencies = ["numpy>=2.4.4", "matplotlib>=3.10.9"]
 requires-python = ">=3.12"
 readme = "README.md"
 license = {text = "MIT"}
