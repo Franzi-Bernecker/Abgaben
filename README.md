@@ -1,51 +1,72 @@
-# Aufgabe 1 - Power Curve
+# Abgabe 1 – Activity Dashboard
 
-Dieses Projekt ist im Rahmen der Software Engineering Vorlesung entstanden. Es geht darum, aus einer CSV-Datei mit Aktivitätsdaten eine Power Curve zu erstellen.
+Streamlit-Anwendung zur Auswertung von Aktivitätsdaten aus `activity.csv`. Angezeigt werden Leistung, Herzfrequenz und Herzfrequenz-Zonen (Z1–Z5) auf Basis einstellbarer Schwellenwerte.
 
-## Was macht das Projekt?
+---
 
-Wir lesen Leistungsdaten aus einer `activity.csv` Datei ein, sortieren die Werte mit einem selbst geschriebenen Bubble Sort Algorithmus und plotten dann die Power Curve als Grafik. Das Ergebniss wird als PNG im `figures/` Ordner gespeichert.
+## Funktionen
 
-![Power Curve](figures/power_curve.png)
+Die Oberfläche ist in drei Tabs gegliedert:
 
-## Projektstruktur
+| Tab | Inhalt |
+|-----|--------|
+| **Data** | Rohdaten als Dataframe |
+| **Calculations** | Mittelwert und Maximum der Leistung; Diagramm Leistung und Herzfrequenz über die Zeit (zwei y-Achsen) |
+| **Zone Summary** | Zoneneinteilung nach maximaler Herzfrequenz, farbcodierter Plot, Tabelle mit Verweildauer pro Zone und mittlerer Leistung |
 
-- `main.py` - Hauptskript, hier wird alles zusammengefügt
-- `load_data.py` - Lädt die CSV-Datei und gibt die Spalten als Dictionary zurück
-- `sort.py` - Enthält die Bubble Sort Implementierung
-- `power_curve.py` - Erstellt den Plot der Power Curve mit matplotlib
-- `activity.csv` - Die Eingabedaten (Aktivitätsdaten mit Leistungswerten)
-- `figures/` - Hier landen die generierten Grafiken
+Die Zonen entsprechen Prozentanteilen der maximalen Herzfrequenz (Standard: 220, im UI anpassbar). Visualisierung mit `pd.cut` und Plotly.
 
-## Setup
+---
 
-Das Projekt verwendet PDM als Package Manager. Python >= 3.12 wird benötigt.
+## Installation und Start
+
+Voraussetzungen: **Python 3.14**, **PDM**.
 
 ```bash
 pdm install
-``` 
-
-## Ausführen
-
-Einfach das main.py skript starten:
-
-```bash
-pdm run python main.py
+pdm run streamlit run main.py
 ```
 
-Oder direkt mit dem venv:
+Die Anwendung ist unter `http://localhost:8501` erreichbar (Port kann abweichen; URL siehe Terminal).
 
-```bash
-python main.py
+Empfohlen wird der Start über `pdm run`, damit die Abhängigkeiten aus der Projektumgebung verwendet werden.
+
+---
+
+## Projektstruktur
+
 ```
+.
+├── main.py              # Streamlit-App
+├── activity.csv         # Eingabedaten
+├── pyproject.toml       # Abhängigkeiten (PDM)
+└── docs/images/         # optionale HTML-Exports der Diagramme
+```
+
+---
+
+## Datenformat
+
+`activity.csv` muss mindestens folgende Spalten enthalten:
+
+- `HeartRate` – Herzfrequenz (BPM)
+- `PowerOriginal` – Leistung (Watt)
+
+Weitere Spalten werden nicht ausgewertet.
+
+---
 
 ## Abhängigkeiten
 
-- numpy
-- matplotlib
+- **Streamlit** – Web-Oberfläche
+- **Pandas** – Datenverarbeitung
+- **Plotly** – Diagramme (Subplots, sekundäre y-Achse)
+
+---
 
 ## Autoren
 
 - Franzi Bernecker
 - Laurenz Keller
 
+Software Engineering, MCI – Abgabe 2.

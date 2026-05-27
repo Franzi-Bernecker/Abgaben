@@ -1,13 +1,17 @@
 [project]
-name = "Aufgabe1"
+name = "Abgabe-2"
 version = "0.1.0"
 description = "Default template for PDM package"
 authors = [
     {name = "Franzi-Bernecker", email = "bf8127@mci4me.at"},
-    {name = "laurenzkeller05", email = "laurenz.keller05@gmail.com"},
 ]
-dependencies = ["numpy>=2.4.4", "matplotlib>=3.10.9"]
-requires-python = ">=3.12"
+dependencies = [
+    "pandas>=3.0.3",
+    "numpy>=2.4.6",
+    "streamlit>=1.57.0",
+    "plotly>=6.7.0",
+]
+requires-python = "==3.14.*"
 readme = "README.md"
 license = {text = "MIT"}
 
