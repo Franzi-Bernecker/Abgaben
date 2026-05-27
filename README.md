@@ -68,5 +68,3 @@ Weitere Spalten werden nicht ausgewertet.
 
 - Franzi Bernecker
 - Laurenz Keller
-
-Software Engineering, MCI – Abgabe 2.
