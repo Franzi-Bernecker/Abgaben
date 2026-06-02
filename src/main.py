@@ -1,28 +1,11 @@
-import pandas as pd
+from read_data import lade_aktivitaets_daten
+from power_curve import power_curve 
 
-def main():
-    # 1. Pfad zur Datei definieren
-    # Da die Datei im selben Ordner wie main.py liegt, reicht der Name
-    dateiname = "activity.csv"
-    
-    try:
-        # 2. Die CSV-Datei in einen sogenannten "DataFrame" laden
-        # (Ein DataFrame ist wie eine Excel-Tabelle in Python)
-        df = pd.read_csv(dateiname)
-        
-        print("Erfolgreich geladen! Hier sind die ersten 5 Zeilen:")
-        # zeigt die ersten Zeilen der Tabelle im Terminal an
-        print(df.head()) 
-        
-        # 3. Jetzt kannst du die Watt-Spalte auswählen
-        # ERSETZE 'watt' durch den echten Spaltennamen aus deiner Datei!
-        watt_daten = df['powerOriginal']
-        
-        # HIER kommt später der Aufruf deiner Funktion aus analyse.py hin...
-        
-    except FileNotFoundError:
-        print(f"Fehler: Die Datei '{dateiname}' wurde nicht gefunden.")
-        print("Stelle sicher, dass sie wirklich im selben Ordner wie main.py liegt.")
+df = lade_aktivitaets_daten("data/activity.csv")
 
-if __name__ == "__main__":
-    main()
+power_data = df['PowerOriginal']  # Ersetze 'PowerOriginal' durch den tatsächlichen Spaltennamen in deiner CSV-Datei
+duration = df['Duration']  # Ersetze 'Duration' durch den tatsächlichen Spaltennamen in deiner CSV-Datei
+
+result = power_curve(power_data, duration)
+
+
