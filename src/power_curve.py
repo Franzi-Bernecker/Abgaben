@@ -3,15 +3,34 @@ import pandas as pd
 import plotly.express as px
 
 
-#Windows für die Power Curve
-WINDOWS = [1, 2, 5, 10, 20, 30, 60, 120, 180, 300, 600, 900, 1200, 1800]
+#1-2-5-Reihe als Basis für typische Power-Curve-Fenster (in Sekunden)
+_STANDARD_STEPS = [
+    1, 2, 5, 10, 20, 30, 60, 120, 180, 300,
+    600, 900, 1200, 1800, 2700, 3600, 5400, 7200, 10800,
+]
 
-#Labels für die x-Achse
-TICK_LABELS = {
-    1: "1s", 2: "2s", 5: "5s", 10: "10s", 20: "20s", 30: "30s",
-    60: "1min", 120: "2min", 180: "3min", 300: "5min",
-    600: "10min", 900: "15min", 1200: "20min", 1800: "30min",
-}
+
+#Dynamisch Fenster auswählen
+def generate_windows(total_time):
+    windows = [w for w in _STANDARD_STEPS if w < total_time]
+    if not windows or windows[-1] != int(total_time):
+        windows.append(int(total_time))
+    return windows
+
+
+#Formatiert Sekunden als lesbares Label (z.B. '5s', '2min', '1h 30min').
+def format_duration(seconds):
+    if seconds < 60:
+        return f"{seconds}s"
+    minutes = seconds // 60
+    rest_s = seconds % 60
+    if minutes < 60:
+        return f"{minutes}min" if rest_s == 0 else f"{minutes}min {rest_s}s"
+    hours = minutes // 60
+    rest_m = minutes % 60
+    if rest_m == 0:
+        return f"{hours}h"
+    return f"{hours}h {rest_m}min"
 
 
 #Berechnung der Power Curve
@@ -21,7 +40,7 @@ def calculate_power_curve(power_data, duration_data):
     cum_time = duration_data.cumsum().values
     total_time = cum_time[-1]
 
-    windows = [w for w in WINDOWS if w <= total_time]
+    windows = generate_windows(total_time)
     ergebnis = []
 
     for target_seconds in windows:
@@ -68,7 +87,7 @@ def plot_power_curve(df_result):
     )
 
     tickvals = df_result["Zeit"].tolist()
-    ticktext = [TICK_LABELS.get(v, f"{v}s") for v in tickvals]
+    ticktext = [format_duration(v) for v in tickvals]
     fig.update_xaxes(type="log", tickvals=tickvals, ticktext=ticktext)
 
     return fig
