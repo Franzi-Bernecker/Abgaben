@@ -64,7 +64,7 @@ Die erwartete CSV-Datei (z. B. `Data/activity.csv`) sollte mindestens die folgen
 - `PowerOriginal` — Leistungswerte in Watt
 - `Duration` — Dauer/Auflösung der Messpunkte in Sekunden
 
-Hinweis: Weitere Spalten werden toleriert, solange die beiden oben genannten vorhanden sind.
+Hinweis: Weitere Spalten werden toleriert, solange die beiden oben genannten vorhanden sind
 
 ---
 
