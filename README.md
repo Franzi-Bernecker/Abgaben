@@ -1,4 +1,4 @@
-# Abgabe 1 – Activity Dashboard
+# Abgabe 2 – Activity Dashboard
 
 Streamlit-Anwendung zur Auswertung von Aktivitätsdaten aus `activity.csv`. Angezeigt werden Leistung, Herzfrequenz und Herzfrequenz-Zonen (Z1–Z5) auf Basis einstellbarer Schwellenwerte.
 
