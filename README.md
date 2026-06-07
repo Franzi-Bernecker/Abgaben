@@ -1,5 +1,5 @@
 
-# Abgabe 2 — Leistungskurve (Power Curve)
+# Abgabe 3 — Leistungskurve (Power Curve)
 
 Dieses Python-Projekt berechnet und visualisiert die sportwissenschaftliche Leistungskurve (Power Curve) aus Radsport-Aktivitätsdaten.
 
